@@ -32,3 +32,17 @@ This project is built as a fully static site (no server-side rendering).
 - Pages and layout are placeholders
 - Content is currently hard-coded
 - CMS integration and styling will be added incrementally
+
+## Images
+
+This project uses Astro’s built-in image optimization.
+
+- Photos and content images live in `src/assets/` and are rendered via `astro:assets`.
+- Only a single high-quality source image is stored; Astro generates optimized variants at build time.
+- The `public/` directory is reserved for assets that should be served as-is (SVGs, favicons, OG images).
+
+See `CLAUDE.md` for detailed image-handling rules.
+
+## Video
+
+This project uses Cloudinary for hosting videos. Videos should not be saved into Github.

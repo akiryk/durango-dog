@@ -55,3 +55,26 @@ This is a demo and exploration project, not a production site.
 - When making changes, explain **what** you changed and **why**
 - If unsure about an approach, ask before proceeding
 - Prefer clarity over verbosity
+
+## Image Handling Rules (Do Not Deviate)
+
+- JPEG/PNG photos must be placed in `src/assets/`, not `public/`.
+- Store exactly one high-quality source image per asset. Do not manually resize or compress images.
+- All images from `src/assets/` must be rendered using Astro's `Image` component from `astro:assets`.
+- Do not use raw `<img>` tags for images that live in `src/assets/`.
+- The `public/` directory is reserved for assets that must be served as-is (SVG logos, icons, favicons, OG images).
+- **Exception:** Video poster images (e.g., `public/image/dogsvideo.jpg`) may live in `public/` since they're tied to externally-hosted videos and need a direct URL.
+
+**Why this matters:** Images in `public/` bypass Astro's optimization pipeline — they won't be resized, converted to modern formats (WebP/AVIF), or lazy-loaded automatically.
+
+**Example usage:**
+```astro
+---
+import { Image } from 'astro:assets';
+import hero from '../assets/hero.jpg';
+---
+
+<Image src={hero} alt="Description of the image" />
+```
+
+The goal is to rely entirely on Astro's build-time image optimization and avoid manual image processing workflows.
