@@ -3,11 +3,32 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Home">
-	<h1>Welcome to Durango Dog Training</h1>
-	<p>
-		We help dogs and their owners build lasting relationships through positive,
-		reward-based training methods. Whether you have a new puppy or an adult dog
-		with behavioral challenges, our experienced trainers are here to help you
-		achieve your goals.
-	</p>
+	<section class="relative h-[calc(100vh-96px)] bg-black overflow-hidden">
+		<video
+			class="absolute inset-0 w-full h-full object-cover motion-safe:block motion-reduce:hidden"
+			autoplay
+			loop
+			muted
+			playsinline
+			poster="/image/dogsvideo.jpg"
+			aria-hidden="true"
+		>
+			<source src="/video/dogsvideo-optimized.mp4" type="video/mp4" />
+		</video>
+		<img
+			src="/image/dogsvideo.jpg"
+			alt=""
+			class="absolute inset-0 w-full h-full object-cover hidden motion-reduce:block"
+			aria-hidden="true"
+		/>
+		<div class="absolute top-0 left-[40px] z-10 bg-black/35 rounded-b-[10px] p-6">
+			<img src="/image/logo.svg" alt="Durango Dog Training" />
+		</div>
+	</section>
+
+	<section id="primary-message" class="py-16 px-8 font-opensans text-[1.25rem]">
+		<h2>Real Training. Real Freedom. Real Results.</h2>
+		<p>Helping dogs become calm, confident, and reliably off-leash — without gimmicks or guesswork.</p>
+		<p>Led by Emma Calder, professional dog trainer specializing in modern, relationship-based training for dogs of all ages and challenges.</p>
+	</section>
 </Layout>

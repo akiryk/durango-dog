@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --font-anton: 'Anton', sans-serif;
+  --font-opensans: 'Open Sans', sans-serif;
+  --color-olive: #9CA117;
+  --color-gold: #DFB819;
+}
+
+@layer base {
+  html, body {
+    height: 100%;
+  }
+  body {
+    margin: 0;
+  }
+}

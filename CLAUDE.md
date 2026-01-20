@@ -30,8 +30,8 @@ This is a demo and exploration project, not a production site.
 
 ## Styling
 
-- Tailwind CSS is an acceptable and likely choice for styling
-- If Tailwind is used, prefer:
+- Use Tailwind CSS for styling
+- Prefer:
   - Clear, readable utility usage
   - Minimal custom configuration
 - Avoid heavy UI component libraries or CSS frameworks that impose markup or behavior
