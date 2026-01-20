@@ -63,7 +63,7 @@ This is a demo and exploration project, not a production site.
 - All images from `src/assets/` must be rendered using Astro's `Image` component from `astro:assets`.
 - Do not use raw `<img>` tags for images that live in `src/assets/`.
 - The `public/` directory is reserved for assets that must be served as-is (SVG logos, icons, favicons, OG images).
-- **Exception:** Video poster images (e.g., `public/image/dogsvideo.jpg`) may live in `public/` since they're tied to externally-hosted videos and need a direct URL.
+- **Exception:** Video poster images (e.g., `public/images/dogs-video-poster.jpg`) may live in `public/` since they're tied to externally-hosted videos and need a direct URL.
 
 **Why this matters:** Images in `public/` bypass Astro's optimization pipeline — they won't be resized, converted to modern formats (WebP/AVIF), or lazy-loaded automatically.
 
