@@ -5,6 +5,9 @@
   --font-opensans: 'Open Sans', sans-serif;
   --color-olive: #9CA117;
   --color-gold: #DFB819;
+  --color-charcoal: #3A3A32;
+  --color-yellow: #FFE205;
+  --color-brand: #DB5009;
 }
 
 @layer base {
@@ -14,4 +17,10 @@
   body {
     margin: 0;
   }
+}
+
+/* Link styles - placed outside @layer to override Tailwind's preflight */
+main a {
+  color: var(--color-brand);
+  text-decoration: underline;
 }
