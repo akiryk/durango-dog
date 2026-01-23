@@ -68,6 +68,7 @@ This is a demo and exploration project, not a production site.
 **Why this matters:** Images in `public/` bypass Astro's optimization pipeline — they won't be resized, converted to modern formats (WebP/AVIF), or lazy-loaded automatically.
 
 **Example usage:**
+
 ```astro
 ---
 import { Image } from 'astro:assets';
@@ -78,3 +79,50 @@ import hero from '../assets/hero.jpg';
 ```
 
 The goal is to rely entirely on Astro's build-time image optimization and avoid manual image processing workflows.
+
+## Layout Grid (Authoritative)
+
+This project uses a **9-column responsive grid**. These rules must be followed exactly.
+
+### Units
+
+- Layout dimensions use **rem**, not px
+- rem values are relative to the root font size
+- Do not use em for grid, columns, gutters, or margins
+
+### Desktop Grid
+
+- Grid spans the full viewport width
+- 9 equal-width columns
+- Outer margins: **2.5rem**
+  (viewport edge → first/last column)
+- Column gutters: **2.5rem**
+  (space between columns)
+- No fixed max-width container
+
+### Content Rails
+
+- Primary content lives in columns **2–8**
+- Columns **1 and 9** provide structural breathing room
+- Text line length should not exceed ~70ch
+
+### Background Surfaces
+
+- Background colors align to column edges
+- Adjacent background blocks meet on column boundaries
+- No visual gaps created by gutters
+- Gutters are recreated via internal padding inside blocks
+
+### Internal Padding
+
+- Content blocks use horizontal padding equal to the gutter (**2.5rem**)
+- Vertical spacing is handled independently
+
+### Mobile
+
+- Single-column vertical flow
+- Outer margins: **1–1.25rem**
+- Backgrounds stack full-width
+
+Do not reinterpret this grid as a 12-column system.
+Do not introduce hard max-width containers unless explicitly instructed.
