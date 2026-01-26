@@ -29,19 +29,24 @@ const navItems = [
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Mynerve&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | Durango Dog Training</title>
+		{import.meta.env.DEV && (
+			<script type="module">
+				import "/src/scripts/dev-grid-overlay.ts";
+			</script>
+		)}
 	</head>
 	<body class="h-full flex flex-col">
-		<header class="flex h-[96px] w-full flex-none">
-			<div class="flex-1 bg-olive"></div>
-			<nav class="flex items-center gap-2 px-4 bg-charcoal font-anton text-[20px] tracking-[0.07em] uppercase antialiased">
+		<header class="grid grid-cols-9 h-[48px] lg:h-[65px] w-full flex-none">
+			<div class="col-span-5 lg:col-span-6 bg-olive"></div>
+			<nav class="col-span-4 lg:col-span-3 flex items-center justify-evenly bg-charcoal font-anton text-[16px] lg:text-[18px] tracking-[0.07em] uppercase antialiased">
 				{navItems.map((item) =>
 					isCurrentPage(item.href) ? (
-						<span class="text-olive py-2 px-4">{item.label}</span>
+						<span class="text-olive py-2 px-[13px]">{item.label}</span>
 					) : (
-						<a href={item.href} class="text-white no-underline transition-colors duration-500 ease-out hover:text-yellow py-2 px-4">{item.label}</a>
+						<a href={item.href} class="text-white no-underline transition-colors duration-500 ease-out hover:text-yellow py-2 px-[13px]">{item.label}</a>
 					)
 				)}
 			</nav>

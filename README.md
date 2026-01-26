@@ -46,3 +46,7 @@ See `CLAUDE.md` for detailed image-handling rules.
 ## Video
 
 This project uses Cloudinary for hosting videos. Videos should not be saved into Github.
+
+## Grid/Layout
+
+Refer to docs/layout-patterns

@@ -126,3 +126,19 @@ This project uses a **9-column responsive grid**. These rules must be followed e
 
 Do not reinterpret this grid as a 12-column system.
 Do not introduce hard max-width containers unless explicitly instructed.
+
+## Typography
+
+H1 and H2 elements use Mynerve at 48px.
+Body copy (<p> elements) uses Open Sans regular at 16px, unless otherwise specified.
+Some body copy is special and needs to be larger. When we need special, larger body copy, use Open Sans 20px.
+Strong elements inside body copy should be rendered as Open Sans bold.
+
+## Colors
+
+Yellow: #FFD00F
+dark green: #516B44
+dark gray: #3A3A32
+white text color: #ffffff
+black text color: #000000
+pale tan/yellow background: #F4F4E8

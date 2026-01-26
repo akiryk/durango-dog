@@ -1,17 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --font-anton: 'Anton', sans-serif;
-  --font-opensans: 'Open Sans', sans-serif;
-  --color-olive: #9CA117;
-  --color-gold: #DFB819;
-  --color-charcoal: #3A3A32;
-  --color-yellow: #FFE205;
-  --color-brand: #DB5009;
+  --font-anton: "Anton", sans-serif;
+  --font-mynerve: "Mynerve", cursive;
+  --font-opensans: "Open Sans", sans-serif;
+  --color-olive: #9ca117;
+  --color-gold: #dfb819;
+  --color-charcoal: #3a3a32;
+  --color-yellow: #ffd00f;
+  --color-dark-green: #516b44;
+  --color-pale-tan: #f4f4e8;
+  --color-brand: #db5009;
+  --grid-template-columns-9: repeat(9, minmax(0, 1fr));
 }
 
 @layer base {
-  html, body {
+  html,
+  body {
     height: 100%;
   }
   body {
@@ -19,8 +24,47 @@
   }
 }
 
+/* Typography - site-wide standards */
+h1,
+h2 {
+  font-family: var(--font-mynerve);
+  font-size: 3rem; /* 48px */
+  font-weight: 400;
+}
+
+p {
+  font-family: var(--font-opensans);
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+}
+
+strong {
+  font-family: var(--font-opensans);
+  font-weight: 700;
+}
+
 /* Link styles - placed outside @layer to override Tailwind's preflight */
 main a {
   color: var(--color-brand);
   text-decoration: underline;
+}
+
+.hero-bg {
+  background: linear-gradient(
+    to right,
+    var(--color-dark-green) 0%,
+    var(--color-dark-green) calc(100% - 40px),
+    var(--color-charcoal) calc(100% - 40px),
+    var(--color-charcoal) 100%
+  );
+}
+
+.homepage-decorative-grid-bg {
+  background: linear-gradient(
+    to right,
+    var(--color-dark-green) 0%,
+    var(--color-dark-green) calc(66.666% + 14px),
+    var(--color-pale-tan) calc(66.666% + 14px),
+    var(--color-pale-tan) 100%
+  );
 }

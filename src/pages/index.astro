@@ -1,9 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import dogTrainingImg from '../assets/originals/dog-training.jpg';
 ---
 
 <Layout title="Home">
-	<section class="relative h-[calc(100vh-96px)] bg-black overflow-hidden">
+	<!-- Hero Section with Video -->
+	<section class="relative h-[calc(100vh-48px)] lg:h-[calc(100vh-65px)] bg-black overflow-hidden">
 		<video
 			class="absolute inset-0 w-full h-full object-cover motion-safe:block motion-reduce:hidden"
 			autoplay
@@ -16,9 +19,9 @@ import Layout from '../layouts/Layout.astro';
 			aria-hidden="true"
 		>
 			<source
-  src="https://res.cloudinary.com/dartfxfpg/video/upload/q_auto,f_auto/dogs-video_hw55ej.mp4"
-  type="video/mp4"
-/>
+				src="https://res.cloudinary.com/dartfxfpg/video/upload/q_auto,f_auto/dogs-video_hw55ej.mp4"
+				type="video/mp4"
+			/>
 		</video>
 		<img
 			src="/images/dogs-video-poster.jpg"
@@ -26,14 +29,104 @@ import Layout from '../layouts/Layout.astro';
 			class="absolute inset-0 w-full h-full object-cover hidden motion-reduce:block"
 			aria-hidden="true"
 		/>
-		<div class="absolute top-0 left-[40px] z-10 bg-black/35 rounded-b-[10px] p-6">
-			<img src="/images/logo.svg" alt="Durango Dog Training" />
+		<div class="absolute top-0 left-[40px] z-10 bg-black/35 rounded-b-[10px] pt-4 px-[18px] pb-[20px]">
+			<img src="/images/logo.svg" alt="Durango Dog Training" class="w-[154px]" />
 		</div>
 	</section>
 
-	<section id="primary-message" class="py-16 px-8 font-opensans text-[1.25rem]">
-		<h2>Real Training. Real Freedom. Real Results.</h2>
-		<p>Helping dogs become calm, confident, and reliably off-leash — without gimmicks or guesswork.</p>
-		<p>Led by Emma Calder, professional dog trainer specializing in modern, relationship-based training for dogs of all ages and challenges.</p>
+
+<!-- Primary Message Section -->
+<section id="primary-message" class="hero-bg">
+  <!-- Page margin container -->
+  <div class="px-10">
+    <!-- Grid -->
+    <div class="grid grid-cols-9 gap-x-10">
+
+      <!-- Green panel (contained) -->
+      <div class="col-start-1 col-end-7">
+        <div class="col-start-2 col-end-6 py-12">
+          <h1 class="text-white leading-[1.1] mb-6">
+            Real Training. Real Freedom.<br />
+            <span class="text-yellow">Real Results.</span>
+          </h1>
+
+          <p class="text-[1.25rem] text-white mb-4">
+            Helping dogs become calm, confident, and reliably off-leash —
+            without gimmicks or guesswork.
+          </p>
+
+          <p class="text-[1.25rem] text-white">
+            Led by <strong>Emma Calder</strong>, professional dog trainer
+            specializing in modern, relationship-based training for dogs of all
+            ages and challenges.
+          </p>
+        </div>
+      </div>
+
+      <!-- Gray panel (asymmetric trailing) -->
+      <div class="col-start-7 col-end-10 bg-charcoal flex items-center">
+        <div class="w-full flex flex-col items-center gap-4 py-12">
+          <a
+            href="/services"
+            class="w-full max-w-[280px] py-3 px-6
+                   border-2 border-white text-white font-bold text-center
+                   hover:bg-white/10 transition-colors"
+          >
+            Explore Training Programs
+          </a>
+
+          <a
+            href="/contact"
+            class="w-full max-w-[280px] py-3 px-6
+                   border-2 border-yellow text-yellow font-bold text-center
+                   hover:bg-yellow/10 transition-colors"
+          >
+            Schedule A Consultation
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Decorative grid break -->
+<div
+  aria-hidden="true"
+  role="presentation"
+  class="homepage-decorative-grid-bg"
+>
+  <div class="px-10">
+    <div class="grid grid-cols-9 gap-x-10 h-[100px]">
+      <!-- Left decorative block -->
+      <div class="col-start-1 col-end-7 bg-dark-green"></div>
+
+      <!-- Right side intentionally empty / transparent -->
+      <div class="col-start-7 col-end-10"></div>
+    </div>
+  </div>
+</div>
+
+	<!-- Why This Training Works Section -->
+	<section id="why-it-works" class="bg-pale-tan">
+		<div class="grid grid-cols-9 gap-[40px] mx-[40px] py-16">
+			<!-- Image column -->
+			<div class="col-span-3">
+				<Image src={dogTrainingImg} alt="Dogs during a training session" class="w-full h-auto" />
+			</div>
+			<!-- Content column -->
+			<div class="col-span-6">
+				<h2 class="text-black leading-[1.1] mb-8">Why this training works</h2>
+				<p class="text-black mb-4">Clear communication, fair structure, and motivation-driven learning. That's the foundation of everything Emma teaches.</p>
+				<p class="text-black mb-4">Rather than relying on treats alone or heavy-handed correction, this training approach focuses on helping dogs understand what's expected of them — and want to make good choices. The result is behavior that holds up in real life, not just during training sessions.</p>
+				<p class="text-black mb-4">Clients come for obedience, off-leash reliability, or behavior challenges — and stay because they finally feel confident handling their dog in the world.</p>
+				<p class="text-black mb-4">This isn't about control.</p>
+				<p class="text-black mb-8">It's about building a partnership that lasts.</p>
+				<div class="flex gap-4">
+					<a href="/contact" class="py-4 px-8 bg-yellow text-charcoal font-opensans font-bold text-[20px] no-underline hover:bg-yellow/90 transition-colors">Schedule A Consultation</a>
+					<a href="/services" class="py-4 px-8 border-2 border-charcoal text-charcoal font-opensans font-bold text-[16px] no-underline hover:bg-charcoal/10 transition-colors">Explore Training Programs</a>
+				</div>
+			</div>
+		</div>
 	</section>
 </Layout>
