@@ -49,4 +49,5 @@ This project uses Cloudinary for hosting videos. Videos should not be saved into
 
 ## Grid/Layout
 
-Refer to docs/layout-patterns
+Refer to docs/layout-patterns.
+This repo also includes a dev-only grid overlay tool. See docs/dev/grid-overlay.md.

@@ -1,0 +1,56 @@
+---
+import LinkButton from '/components/LinkButton.astro';
+---
+
+<section class="space-y-12">
+  <header>
+    <h1 class="text-3xl font-bold">LinkButton</h1>
+    <p class="text-stone-600 max-w-prose">
+      A navigation link styled as a button. Use for page-to-page navigation.
+      Do not use for form submission or JS actions.
+    </p>
+  </header>
+
+  <section class="space-y-6">
+    <h2 class="text-xl font-semibold">Variants</h2>
+
+    <div class="flex gap-4 flex-wrap">
+      <LinkButton href="#" variant="primary">Primary</LinkButton>
+      <LinkButton href="#" variant="secondary">Secondary</LinkButton>
+      <LinkButton href="#" variant="highlight">Highlight</LinkButton>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xl font-semibold">Sizes</h2>
+
+    <div class="flex gap-4 flex-wrap items-center">
+      <LinkButton href="#" size="small">Small</LinkButton>
+      <LinkButton href="#" size="large">Large</LinkButton>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xl font-semibold">Full width</h2>
+
+    <div class="max-w-sm">
+      <LinkButton href="#" fullWidth>
+        Full width link button
+      </LinkButton>
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <h2 class="text-xl font-semibold">Usage</h2>
+
+    <pre class="bg-stone-100 p-4 rounded text-sm overflow-x-auto">
+<code>{`<LinkButton
+  href="/contact"
+  variant="highlight"
+  size="large"
+>
+  Contact Us
+</LinkButton>`}</code>
+    </pre>
+  </section>
+</section>

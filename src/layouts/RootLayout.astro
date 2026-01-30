@@ -1,0 +1,14 @@
+<!-- src/layouts/RootLayout.astro -->
+---
+import '../styles/global.css';
+---
+
+<html lang="en">
+  <head>
+    <slot name="head" />
+  </head>
+
+  <body class="min-h-screen bg-white text-stone-800 font-sans">
+    <slot />
+  </body>
+</html>

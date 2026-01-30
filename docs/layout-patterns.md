@@ -2,11 +2,13 @@
 
 _(Human- and AI-readable)_
 
+---
+
 ## Purpose
 
 This document defines a shared vocabulary and intent model for layout using a column-based grid.
 
-Its goal is to eliminate ambiguity when expressing layout requirements—especially in cases where **content width** and **background containment** differ.
+Its goal is to eliminate ambiguity when expressing layout requirements—especially in cases where **content alignment** and **background paint regions** differ.
 
 This specification is intended to be used by:
 
@@ -14,146 +16,164 @@ This specification is intended to be used by:
 - frontend developers
 - AI coding assistants
 
+It reflects **practical constraints of CSS Grid**, including how gutters behave with background painting.
+
 ---
 
-## 1. Grid Foundations (Structural Grid)
+## 1. Grid Foundations (Structural Content Grid)
 
 All layouts are built on a **structural content grid**.
 
 **Baseline grid (example configuration):**
 
 - Columns: 9
-- Outer margins: 20px
-- Gutters: 20px
+- Outer margins: 40px
+- Gutters: 40px
 - Content aligns to **column tracks**
 - Grid lines define column boundaries
 
-> The grid defines **alignment and rhythm**, not background containment.
+> The grid defines **content alignment and rhythm**.
+> It does **not** define background paint regions.
 
 ---
 
-## 2. Key Distinction: Content vs Panel
+## 2. Critical Distinction: Content vs Background Paint
 
 Every layout element must be described using **two independent dimensions**:
 
-### A. Content Span
+### A. Content Span (Structural)
 
 - How many columns the _content_ (text, images, media) occupies
 - Expressed in columns or grid lines
-- Example: “content spans 5 columns”
+- Example: “content spans 5 columns (columns 3–7)”
 
-### B. Panel (Background) Containment
-
-- How far the background color or panel extends relative to the content
-- Expressed using **named panel patterns** (defined below)
-
-> Backgrounds are never assumed to match content width by default.
+Content span is implemented using the grid.
 
 ---
 
-## 3. Named Panel Patterns
+### B. Background Paint Region (Visual)
 
-All background treatments must use one of the following named patterns (or explicitly define a new one).
+- How far a background color visually extends
+- Background paint **does not follow grid gutters**
+- Backgrounds are **not expected** to align to column tracks
 
-Each pattern includes **example intent language**, which demonstrates how the pattern might be referenced in a prompt or specification.
-The numbers used in examples are illustrative only.
+> Background paint is a **visual concern**, not a grid concern.
+
+As a result, background regions are typically implemented using:
+
+- gradients on the grid’s parent container
+- or other paint-only techniques
 
 ---
 
-### Pattern 1: Full-Bleed Band
+## 3. Background Paint Patterns (Named)
+
+All background treatments must use one of the following **named paint patterns**.
+
+These patterns describe **visual regions**, not layout containers.
+
+Each pattern includes example intent language.
+Numeric examples are illustrative only.
+
+---
+
+### Pattern 1: Full-Bleed Paint Band
 
 **Description**
 
 - Content spans N columns
-- Background spans the full grid width (margin to margin)
+- Background color fills the entire horizontal region (edge to edge)
+
+**Implementation guidance**
+
+- Background applied to the section or grid parent
+- Does not rely on grid items for paint
 
 **Example intent language**
 
-> “Full-bleed band; content spans 5 columns (columns 3-7)”
+> “Full-bleed paint band; content spans 5 columns (columns 3–7)”
 
 **Use cases**
 
-- section dividers
-- hero bands
-- strong visual emphasis
-
-**Screenshot Example**
-![Full bleed band](./images/full-bleed.jpg)
-We would say that this is a full-bleed band with content spanning 5 columns from column 3 to 7.
+- hero sections
+- strong visual dividers
 
 ---
 
-### Pattern 2: Contained Panel (Symmetric)
+### Pattern 2: Contained Paint Region (Symmetric)
 
 **Description**
 
 - Content spans N columns
-- Background spans the same columns **plus equal inner padding** on both sides
+- Background paint fills a bounded region centered around the content
+- Visual padding is symmetric
+
+**Implementation guidance**
+
+- Background defined via gradient stops
+- Content remains aligned to grid columns
 
 **Example intent language**
 
-> "Contained panel with symmetric padding; content spans 5 columns (columns 3–7)."
+> “Contained paint region with symmetric padding; content spans 5 columns (columns 3–7)”
 
 **Use cases**
 
-- cards
-- callouts
-- readable text panels
-
-**Screenshot Example**
-![Contained panel](./images/contained-panel.jpg)
+- readable emphasis areas
+- calm visual grouping
 
 ---
 
-### Pattern 3: Asymmetric Panel
+### Pattern 3: Asymmetric Paint Region
 
 **Description**
 
 - Content spans N columns
-- Background extends beyond content on one side only
-- Opposite edge is flush with the content edge
+- Background paint extends beyond content on one side only
+- Opposite side aligns visually with content edge
+
+**Directionality is required**
+
+- **leading**: paint extends before the content
+- **trailing**: paint extends after the content
+
+**Implementation guidance**
+
+- Use a background gradient on the grid parent
+- Gradient stops expressed as percentages of total width
 
 **Example intent language**
 
-> “Asymmetric panel with leading offset: background extends left of the content and is flush on the right. Content spans 5 columns (columns 3–7).”
-
-**Notes**
-
-Directionality must always be specified (leading vs trailing)
-
-- leading offset: background extends before the content
-- trailing offset: background extends after the content
+> “Asymmetric paint region (trailing); background extends to the right of content. Content spans 5 columns (columns 3–7).”
 
 **Use cases**
 
 - editorial layouts
 - directional emphasis
-- visual anchoring
-
-**Screenshot Example**
-![Contained panel](./images/assymetric-panel.jpg)
 
 ---
 
-### Pattern 4: Tight Panel
+### Pattern 4: Tight Paint Region
 
 **Description**
 
-- Background aligns exactly with content edges
-- No additional horizontal padding beyond typographic needs
+- Background paint hugs content closely
+- Minimal or no visual padding
+
+**Implementation guidance**
+
+- Typically applied directly to content wrapper
+- Does not involve gutters
 
 **Example intent language**
 
-> “Tight panel aligned exactly to content edges”
+> “Tight paint region aligned to content edges”
 
 **Use cases**
 
-- labels
 - badges
-- compact emphasis blocks
-
-**Screenshot Example**
-![Contained panel](./images/tight-panel.jpg)
+- labels
+- compact callouts
 
 ---
 
@@ -161,25 +181,21 @@ Directionality must always be specified (leading vs trailing)
 
 Every layout instruction must specify **both**:
 
-1. **Content span**
-2. **Panel pattern**
+1. **Content span** (structural, grid-based)
+2. **Background paint pattern** (visual, paint-based)
 
-Optional parameters (padding amount, gutter offsets, directionality) should be included when relevant.
+Optional parameters (directionality, relative width, breakpoint behavior) should be included when relevant.
 
 ### Example
 
 ```text
 Grid: 9 columns
 Content span: 5 columns (columns 3–7)
-Panel pattern: Asymmetric
-Panel behavior:
-  - leading edge: extends 1 gutter beyond content
-  - trailing edge: flush with content
+Background paint pattern: Asymmetric (trailing)
+Paint behavior:
+  - paint occupies ~66% of total width
+  - remaining region is transparent
 ```
-
-This eliminates positional guesswork and avoids layout “fixes” using offsets or pseudo-elements.
-
----
 
 ## Implementation Guidance (Non-Normative)
 
@@ -208,3 +224,7 @@ Screenshots are **illustrative**, not normative:
 > They must be specified independently.
 
 ---
+
+```
+
+```

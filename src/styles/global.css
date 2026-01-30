@@ -8,10 +8,15 @@
   --color-gold: #dfb819;
   --color-charcoal: #3a3a32;
   --color-yellow: #ffd00f;
+  --color-accent-yellow: #ffc800;
   --color-dark-green: #516b44;
+  --color-tan: #eae3ca;
   --color-pale-tan: #f4f4e8;
+  --color-white: #ffffff;
   --color-brand: #db5009;
   --grid-template-columns-9: repeat(9, minmax(0, 1fr));
+  --grid-cols: 9;
+  --gutter: 40px;
 }
 
 @layer base {
@@ -22,31 +27,52 @@
   body {
     margin: 0;
   }
+
+  /* Typography - site-wide standards */
+  h1,
+  h2 {
+    font-family: var(--font-mynerve);
+    font-size: 3rem; /* 48px */
+    font-weight: 400;
+  }
+
+  p {
+    font-family: var(--font-opensans);
+    font-size: 1rem; /* 16px */
+    font-weight: 400;
+  }
+
+  strong {
+    font-family: var(--font-opensans);
+    font-weight: 700;
+  }
 }
 
-/* Typography - site-wide standards */
-h1,
-h2 {
-  font-family: var(--font-mynerve);
-  font-size: 3rem; /* 48px */
-  font-weight: 400;
-}
-
-p {
+/* Hero body copy - larger body text for hero/feature sections */
+.hero-body-copy {
   font-family: var(--font-opensans);
-  font-size: 1rem; /* 16px */
+  font-size: 1.25rem; /* 20px */
   font-weight: 400;
-}
-
-strong {
-  font-family: var(--font-opensans);
-  font-weight: 700;
 }
 
 /* Link styles - placed outside @layer to override Tailwind's preflight */
 main a {
   color: var(--color-brand);
   text-decoration: underline;
+}
+
+/* Button component - override default anchor styles */
+.btn {
+  text-decoration: none;
+}
+.btn.btn-primary {
+  color: var(--color-yellow);
+}
+.btn.btn-secondary {
+  color: var(--color-charcoal);
+}
+.btn.btn-highlight {
+  color: var(--color-charcoal);
 }
 
 .hero-bg {
@@ -59,6 +85,16 @@ main a {
   );
 }
 
+.decorative-grid {
+  background: linear-gradient(
+    to right,
+    var(--color-tan) 0%,
+    var(--color-tan) var(--gutter),
+    var(--color-pale-tan) var(--gutter),
+    var(--color-pale-tan) 100%
+  );
+}
+
 .homepage-decorative-grid-bg {
   background: linear-gradient(
     to right,
@@ -67,4 +103,46 @@ main a {
     var(--color-pale-tan) calc(66.666% + 14px),
     var(--color-pale-tan) 100%
   );
+}
+
+/* Hero video text animation */
+.hero-text-animate {
+  position: absolute;
+  font-family: var(--font-mynerve);
+  font-size: 72px;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 4px 16px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  animation: heroTextSlide 3s ease-in-out forwards;
+}
+
+.hero-text-animate-1 {
+  animation-delay: 1s;
+}
+
+.hero-text-animate-2 {
+  animation-delay: 4s;
+}
+
+.hero-text-animate-3 {
+  animation-delay: 7s;
+}
+
+@keyframes heroTextSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(200px);
+  }
 }

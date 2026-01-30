@@ -1,0 +1,54 @@
+---
+import SystemLayout from '../../../layouts/SystemLayout.astro';
+import LinkButton from '../../../components/LinkButton.astro';
+---
+<SystemLayout>
+<header class="space-y-3 max-w-prose">
+  <h1 class="text-3xl font-bold">Components</h1>
+  <p class="text-stone-600">
+    This section documents the reusable UI components used across the site.
+    Components are built to be accessible by default and mapped closely to
+    semantic HTML elements.
+  </p>
+</header>
+
+<section class="mt-12 space-y-8">
+  <h2 class="text-xl font-semibold">Navigation</h2>
+
+  <div class="space-y-4">
+    <!-- Component name + description -->
+    <div class="space-y-1">
+      <a
+        href="/system/components/link-button"
+        class="text-lg font-semibold underline"
+      >
+        LinkButton
+      </a>
+      <p class="text-sm text-stone-600 max-w-prose">
+        A navigation link styled as a button. Use for page-to-page navigation.
+      </p>
+    </div>
+
+    <!-- Live preview -->
+    <div class="space-y-4">
+      <div class="flex gap-4 flex-wrap items-center">
+        <LinkButton href="#">Primary</LinkButton>
+        <LinkButton href="#" variant="secondary">Secondary</LinkButton>
+        <LinkButton href="#" variant="highlight">Highlight</LinkButton>
+      </div>
+
+      <div class="flex gap-4 flex-wrap items-center">
+        <LinkButton href="#" size="small">Small</LinkButton>
+        <LinkButton href="#" size="large">Large</LinkButton>
+      </div>
+
+      <div class="max-w-xs">
+        <LinkButton href="#" fullWidth>
+          Full width
+        </LinkButton>
+      </div>
+    </div>
+  </div>
+</section>
+
+</SystemLayout>
