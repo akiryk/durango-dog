@@ -1,0 +1,43 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+
+interface Props {
+  blok: {
+    headline?: string;
+    value_proposition?: any[];
+    site_map?: any[];
+    get_in_touch?: any[];
+  };
+}
+
+const { blok } = Astro.props;
+---
+
+<footer {...storyblokEditable(blok)} class="bg-charcoal text-white py-12">
+  <div class="mx-[40px]">
+    {blok.headline && (
+      <h2 class="text-yellow mb-8">{blok.headline}</h2>
+    )}
+
+    <div class="grid grid-cols-9 gap-[40px]">
+      <div class="col-span-3">
+        {blok.value_proposition?.map((nestedBlok: any) => (
+          <StoryblokComponent blok={nestedBlok} />
+        ))}
+      </div>
+
+      <div class="col-span-3">
+        {blok.site_map?.map((nestedBlok: any) => (
+          <StoryblokComponent blok={nestedBlok} />
+        ))}
+      </div>
+
+      <div class="col-span-3">
+        {blok.get_in_touch?.map((nestedBlok: any) => (
+          <StoryblokComponent blok={nestedBlok} />
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>

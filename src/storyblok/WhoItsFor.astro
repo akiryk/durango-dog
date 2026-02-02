@@ -1,0 +1,69 @@
+---
+import { storyblokEditable, renderRichText } from '@storyblok/astro';
+
+interface Props {
+  blok: {
+    headline?: string;
+    body_copy?: any;
+    image: {
+      filename: string;
+      alt?: string;
+    };
+    cta1_text?: string;
+    cta1_link?: {
+      cached_url: string;
+    };
+    cta2_text?: string;
+    cta2_link?: {
+      cached_url: string;
+    };
+  };
+}
+
+const { blok } = Astro.props;
+const bodyHtml = blok.body_copy ? renderRichText(blok.body_copy) : '';
+---
+
+<section {...storyblokEditable(blok)} class="bg-white py-16">
+  <div class="grid grid-cols-9 gap-[40px] mx-[40px]">
+    <div class="col-span-6">
+      {blok.headline && (
+        <h2 class="text-black leading-[1.1] mb-8">{blok.headline}</h2>
+      )}
+
+      {bodyHtml && (
+        <div class="text-black [&>p]:mb-4 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-4 [&>ul>li]:mb-2" set:html={bodyHtml} />
+      )}
+
+      {(blok.cta1_text || blok.cta2_text) && (
+        <div class="flex gap-4 mt-8">
+          {blok.cta1_text && blok.cta1_link && (
+            <a
+              href={blok.cta1_link.cached_url}
+              class="btn btn-highlight bg-yellow border border-white text-[20px] py-[12px] px-8 rounded-[6px] font-opensans font-bold text-center transition-colors hover:bg-yellow/90"
+            >
+              {blok.cta1_text}
+            </a>
+          )}
+
+          {blok.cta2_text && blok.cta2_link && (
+            <a
+              href={blok.cta2_link.cached_url}
+              class="btn btn-secondary bg-transparent border border-charcoal text-[16px] py-[6px] px-6 rounded-[6px] font-opensans font-bold text-center transition-colors hover:bg-charcoal/10"
+            >
+              {blok.cta2_text}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+
+    <div class="col-span-3">
+      <img
+        src={blok.image.filename}
+        alt={blok.image.alt || ''}
+        class="w-full h-auto"
+      />
+    </div>
+  </div>
+</section>

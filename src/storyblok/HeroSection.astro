@@ -1,0 +1,71 @@
+---
+import { storyblokEditable, renderRichText } from '@storyblok/astro';
+
+interface Props {
+  blok: {
+    headline?: string;
+    body_copy?: any;
+    image?: {
+      filename: string;
+      alt?: string;
+    };
+    cta1_text?: string;
+    cta1_link?: {
+      cached_url: string;
+    };
+    cta2_text?: string;
+    cta2_link?: {
+      cached_url: string;
+    };
+  };
+}
+
+const { blok } = Astro.props;
+const bodyHtml = blok.body_copy ? renderRichText(blok.body_copy) : '';
+---
+
+<section {...storyblokEditable(blok)} class="py-16 px-10">
+  <div class="grid grid-cols-9 gap-x-10">
+    <div class="col-span-6">
+      {blok.headline && (
+        <h1 class="text-white leading-[1.1] mb-6">{blok.headline}</h1>
+      )}
+
+      {bodyHtml && (
+        <div class="hero-body-copy text-white" set:html={bodyHtml} />
+      )}
+
+      {(blok.cta1_text || blok.cta2_text) && (
+        <div class="flex gap-4 mt-8">
+          {blok.cta1_text && blok.cta1_link && (
+            <a
+              href={blok.cta1_link.cached_url}
+              class="btn btn-primary bg-charcoal border border-white/40 text-[20px] py-[12px] px-8 rounded-[6px] font-opensans font-bold text-center transition-colors hover:bg-charcoal/90"
+            >
+              {blok.cta1_text}
+            </a>
+          )}
+
+          {blok.cta2_text && blok.cta2_link && (
+            <a
+              href={blok.cta2_link.cached_url}
+              class="btn btn-highlight bg-yellow border border-white text-[20px] py-[12px] px-8 rounded-[6px] font-opensans font-bold text-center transition-colors hover:bg-yellow/90"
+            >
+              {blok.cta2_text}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+
+    {blok.image?.filename && (
+      <div class="col-span-3">
+        <img
+          src={blok.image.filename}
+          alt={blok.image.alt || ''}
+          class="w-full h-auto"
+        />
+      </div>
+    )}
+  </div>
+</section>

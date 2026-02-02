@@ -1,0 +1,22 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+
+interface Props {
+  blok: {
+    link_text: string;
+    url: {
+      cached_url: string;
+    };
+  };
+}
+
+const { blok } = Astro.props;
+---
+
+<a
+  {...storyblokEditable(blok)}
+  href={blok.url.cached_url}
+  class="text-white/80 hover:text-yellow transition-colors no-underline"
+>
+  {blok.link_text}
+</a>

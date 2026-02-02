@@ -1,0 +1,27 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+
+interface Props {
+  blok: {
+    headline?: string;
+    links?: any[];
+  };
+}
+
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)} class="text-white">
+  {blok.headline && (
+    <h3 class="text-yellow font-bold mb-4">{blok.headline}</h3>
+  )}
+
+  {blok.links && blok.links.length > 0 && (
+    <nav class="flex flex-col gap-2">
+      {blok.links.map((linkBlok: any) => (
+        <StoryblokComponent blok={linkBlok} />
+      ))}
+    </nav>
+  )}
+</div>

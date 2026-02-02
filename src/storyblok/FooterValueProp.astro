@@ -1,0 +1,32 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+
+interface Props {
+  blok: {
+    headline?: string;
+    image?: {
+      filename: string;
+      alt?: string;
+    };
+    text: string;
+  };
+}
+
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)} class="text-white">
+  {blok.headline && (
+    <h3 class="text-yellow font-bold mb-4">{blok.headline}</h3>
+  )}
+
+  {blok.image?.filename && (
+    <img
+      src={blok.image.filename}
+      alt={blok.image.alt || ''}
+      class="w-32 h-auto mb-4"
+    />
+  )}
+
+  <p class="text-white/80">{blok.text}</p>
+</div>

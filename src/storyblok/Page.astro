@@ -1,0 +1,23 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+
+interface Props {
+  blok: {
+    body?: any[];
+  };
+}
+
+const { blok } = Astro.props;
+
+// Debug: log which components are being rendered
+if (blok.body) {
+  console.log('Page.astro rendering components:', blok.body.map((b: any) => `${b.component} (${b._uid})`));
+}
+---
+
+<div {...storyblokEditable(blok)}>
+  {blok.body?.map((nestedBlok: any) => (
+    <StoryblokComponent blok={nestedBlok} />
+  ))}
+</div>
