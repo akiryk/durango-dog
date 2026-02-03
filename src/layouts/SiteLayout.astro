@@ -3,9 +3,10 @@ import '../styles/global.css';
 
 interface Props {
 	title: string;
+	isHomePage?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, isHomePage = false } = Astro.props;
 
 const pathname = Astro.url.pathname;
 const isCurrentPage = (href: string) => {
@@ -19,6 +20,9 @@ const navItems = [
 	{ href: '/about', label: 'About' },
 	{ href: '/contact', label: 'Contact' },
 ];
+
+const LogoWrapper = isHomePage ? 'div' : 'a';
+const wrapperProps = isHomePage ? {} : { href: '/' };
 ---
 
 <!doctype html>
@@ -38,8 +42,20 @@ const navItems = [
 			</script>
 		)}
 	</head>
-	<body class="h-full flex flex-col">
-		<header class="grid grid-cols-9 h-[48px] lg:h-[65px] w-full flex-none">
+		<body class="h-full flex flex-col" data-page={isHomePage ? 'home' : 'other'}>
+		<header class="grid grid-cols-9 h-[48px] lg:h-[65px] w-full flex-none relative">
+		<!-- Logo - positioned absolutely within header -->
+				<LogoWrapper
+		class="absolute top-[16px] left-[16px] z-10 transition-all duration-300"
+		{...wrapperProps}
+	>
+				<img
+					src="/images/logo-dd.svg"
+					alt="Durango Dog Training"
+					class="logo w-[240px]"
+				/>
+			</LogoWrapper>
+
 			<div class="col-span-5 lg:col-span-6 bg-olive"></div>
 			<nav class="col-span-4 lg:col-span-3 flex items-center justify-evenly bg-charcoal font-opensans font-bold text-[16px] lg:text-[18px] tracking-[0.07em] uppercase antialiased">
 				{navItems.map((item) =>

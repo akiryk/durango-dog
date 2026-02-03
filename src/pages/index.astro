@@ -2,10 +2,20 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { Image } from 'astro:assets';
 import dogTrainingImg from '../assets/originals/dog-training.jpg';
+import { useStoryblokApi, renderRichText } from '@storyblok/astro';
+
+// Components
 import LinkButton from '../components/LinkButton.astro';
+import PolaroidImage from '../components/PolaroidImage.astro';
+
+const storyblokApi = useStoryblokApi();
+const { data } = await storyblokApi.get('cdn/stories/home', { version: 'published' });
+const story = data.story;
+
+const heroSection = story.content.body?.find((blok: any) => blok.component === 'hero_section');
 ---
 
-<SiteLayout title="Home">
+<SiteLayout title="Home" isHomePage={true}>
 	<!-- Hero Video Section-->
 	<section class="relative h-[calc(100vh-48px)] lg:h-[calc(100vh-65px)] bg-black overflow-hidden">
 		<video
@@ -30,9 +40,7 @@ import LinkButton from '../components/LinkButton.astro';
 			class="absolute inset-0 w-full h-full object-cover hidden motion-reduce:block"
 			aria-hidden="true"
 		/>
-		<div class="fixed top-[16px] left-[16px]">
-			<img src="/images/logo-dd.svg" alt="Durango Dog Training" class="w-[240px]" />
-		</div>
+
 
 		<!-- Animated text overlays -->
 		<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -58,16 +66,7 @@ import LinkButton from '../components/LinkButton.astro';
           </h1>
 
 					<!-- Storyblok hero body_copy section -->
-          <p class="text-[1.25rem] text-white mb-4">
-            Helping dogs become calm, confident, and reliably off-leash —
-            without gimmicks or guesswork.
-          </p>
-
-          <p class="text-[1.25rem] text-white">
-            Led by <strong>Emma Calder</strong>, professional dog trainer
-            specializing in modern, relationship-based training for dogs of all
-            ages and challenges.
-          </p>
+          <div class="text-[1.25rem] text-white [&_p]:mb-4 [&_p:last-child]:mb-0" set:html={renderRichText(heroSection?.body_copy)} />
         </div>
       </div>
 
@@ -110,7 +109,11 @@ import LinkButton from '../components/LinkButton.astro';
 		<div class="grid grid-cols-9 gap-[40px] mx-[40px] py-16">
 			<!-- Image column -->
 			<div class="col-span-3">
-				<Image src={dogTrainingImg} alt="Dogs during a training session" class="w-full h-auto" />
+				<PolaroidImage
+					src={dogTrainingImg.src}
+					alt="Dogs during a training session"
+					rotation="left"
+				/>
 			</div>
 			<!-- Content column -->
 			<div class="col-span-5">
@@ -177,10 +180,10 @@ import LinkButton from '../components/LinkButton.astro';
 
       <!-- Image (grid-aligned, visually independent of background) -->
       <div class="col-start-7 col-end-10 relative">
-        <img
+        <PolaroidImage
           src="/src/assets/originals/smiling-dog.jpg"
           alt="Smiling dog in a field of flowers"
-          class="w-full h-auto relative z-10"
+					rotation="right"
         />
       </div>
 

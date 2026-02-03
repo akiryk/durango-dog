@@ -1,0 +1,25 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  rotation?: 'left' | 'right' | 'none';
+  customRotation?: string; // For custom values like 'rotate-3' or '-rotate-1'
+}
+
+const { src, alt, rotation = 'right', customRotation } = Astro.props;
+
+// Map rotation directions to Tailwind classes
+const rotationClass = customRotation || {
+  left: '-rotate-2',
+  right: 'rotate-2',
+  none: 'rotate-0'
+}[rotation];
+---
+
+<div class={`inline-block bg-white p-3 ${rotationClass} shadow-lg`}>
+  <img
+    src={src}
+    alt={alt}
+    class="block w-full h-auto"
+  />
+</div>

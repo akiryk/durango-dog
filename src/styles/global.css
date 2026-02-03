@@ -48,13 +48,6 @@
   }
 }
 
-/* Hero body copy - larger body text for hero/feature sections */
-.hero-body-copy {
-  font-family: var(--font-opensans);
-  font-size: 1.25rem; /* 20px */
-  font-weight: 400;
-}
-
 /* Link styles - placed outside @layer to override Tailwind's preflight */
 main a {
   color: var(--color-brand);
@@ -103,6 +96,16 @@ main a {
     var(--color-pale-tan) calc(66.666% + 14px),
     var(--color-pale-tan) 100%
   );
+}
+
+/* Logo styling - smaller by default */
+body[data-page="other"] .logo {
+  width: 168px; /* 70% of 240px */
+}
+
+/* Logo styling - full size on home page */
+body[data-page="home"] .logo {
+  width: 240px;
 }
 
 /* Hero video text animation */
