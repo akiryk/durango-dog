@@ -136,9 +136,4 @@ Strong elements inside body copy should be rendered as Open Sans bold.
 
 ## Colors
 
-Yellow: #FFD00F
-dark green: #516B44
-dark gray: #3A3A32
-white text color: #ffffff
-black text color: #000000
-pale tan/yellow background: #F4F4E8
+See docs/design-specs.md
