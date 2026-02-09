@@ -1,0 +1,89 @@
+/* Decorative background gradients */
+.hero-bg {
+  background: linear-gradient(
+    to right,
+    var(--color-dark-green) 0%,
+    var(--color-dark-green) calc(100% - 40px),
+    var(--color-charcoal) calc(100% - 40px),
+    var(--color-charcoal) 100%
+  );
+}
+
+.decorative-grid {
+  background: linear-gradient(
+    to right,
+    var(--color-tan) 0%,
+    var(--color-tan) var(--gutter),
+    var(--color-pale-tan) var(--gutter),
+    var(--color-pale-tan) 100%
+  );
+}
+
+.tan-green-split-bg {
+  background: linear-gradient(
+    to right,
+    var(--color-tan) 0%,
+    var(--color-tan) calc(33.333% + 27px),
+    var(--color-dark-green) calc(33.333% + 27px),
+    var(--color-dark-green) 100%
+  );
+  position: relative;
+  top: -200px;
+  height: 200px;
+}
+
+.homepage-decorative-grid-bg {
+  background: linear-gradient(
+    to right,
+    var(--color-dark-green) 0%,
+    var(--color-dark-green) calc(66.666% + 14px),
+    var(--color-pale-tan) calc(66.666% + 14px),
+    var(--color-pale-tan) 100%
+  );
+}
+
+@utility numbered-list {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: step;
+
+  & > li {
+    position: relative;
+    padding-left: 4rem;
+    min-height: 4rem; /* Ensure minimum height matches circle */
+    display: flex;
+    align-items: center; /* Vertically center the text content */
+  }
+
+  & > li:not(:last-child) {
+    margin-bottom: 1rem; /* Gap between items */
+  }
+
+  & > li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-dark-green);
+    color: var(--color-tan);
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size: 2.125em;
+  }
+
+  & > li > span {
+    display: block;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.4;
+    color: black;
+  }
+}

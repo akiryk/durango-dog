@@ -1,0 +1,112 @@
+/* Button component */
+.btn {
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow:
+    2px 3px 6px rgba(76, 68, 40, 0.2),
+    5px 7px 14px rgba(76, 68, 40, 0.12),
+    -1px 0px 3px rgba(255, 255, 255, 0.2);
+  transition:
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px) translateX(-0.5px);
+  filter: brightness(1.05);
+  box-shadow:
+    3px 5px 10px rgba(76, 68, 40, 0.25),
+    7px 12px 24px rgba(76, 68, 40, 0.15),
+    -1px -1px 4px rgba(255, 255, 255, 0.3);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+  transition: transform 0.1s;
+  box-shadow:
+    1px 2px 3px rgba(76, 68, 40, 0.25),
+    2px 3px 8px rgba(76, 68, 40, 0.12);
+}
+
+/* Primary (dark) variant - darker shadows with subtle yellow highlight */
+.btn.btn-primary {
+  color: var(--color-yellow);
+  box-shadow:
+    2px 3px 6px rgba(0, 0, 0, 0.3),
+    5px 7px 14px rgba(0, 0, 0, 0.18),
+    -1px 0px 3px rgba(244, 196, 48, 0.1);
+}
+
+.btn.btn-primary:hover:not(:disabled) {
+  box-shadow:
+    3px 5px 10px rgba(0, 0, 0, 0.35),
+    7px 12px 24px rgba(0, 0, 0, 0.22),
+    -1px -1px 4px rgba(244, 196, 48, 0.15);
+}
+
+.btn.btn-primary:active:not(:disabled) {
+  box-shadow:
+    1px 2px 3px rgba(0, 0, 0, 0.35),
+    2px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Secondary (tan) variant - warm shadows inherited from base */
+.btn.btn-secondary {
+  color: var(--color-charcoal);
+}
+
+/* Highlight (yellow) variant - warm shadows inherited from base */
+.btn.btn-highlight {
+  color: var(--color-charcoal);
+}
+
+/* Logo sizing */
+body[data-page="other"] .logo {
+  width: 168px; /* 70% of 240px */
+}
+
+body[data-page="home"] .logo {
+  width: 240px;
+}
+
+/* Hero video text animation */
+.hero-text-animate {
+  position: absolute;
+  font-family: var(--font-mynerve);
+  font-weight: bold;
+  font-size: 90px;
+  color: white;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.6),
+    0 4px 16px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  animation: heroTextFade 2600ms ease-in-out forwards;
+}
+
+.hero-text-animate-1 {
+  animation-delay: 1000ms;
+}
+
+.hero-text-animate-2 {
+  animation-delay: 3800ms; /* 1000 + 2100 = crossfade with phrase 1 */
+}
+
+.hero-text-animate-3 {
+  animation-delay: 6600ms; /* 3100 + 2100 = crossfade with phrase 2 */
+}
+
+@keyframes heroTextFade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
