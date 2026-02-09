@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import RootLayout from './RootLayout.astro';
 
 interface Props {
 	title: string;
@@ -25,30 +25,14 @@ const LogoWrapper = isHomePage ? 'div' : 'a';
 const wrapperProps = isHomePage ? {} : { href: '/' };
 ---
 
-<!doctype html>
-<html lang="en" class="h-full">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Mynerve&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title} | Durango Dog Training</title>
-		{import.meta.env.DEV && (
-			<script type="module">
-				import "/src/scripts/dev-grid-overlay.ts";
-			</script>
-		)}
-	</head>
-		<body class="h-full flex flex-col" data-page={isHomePage ? 'home' : 'other'}>
+<RootLayout title={`${title} | Durango Dog Training`}>
+	<div class="flex flex-col min-h-full" data-page={isHomePage ? 'home' : 'other'}>
 		<header class="grid grid-cols-9 h-[48px] lg:h-[65px] w-full flex-none relative">
-		<!-- Logo - positioned absolutely within header -->
-				<LogoWrapper
-		class="absolute top-[16px] left-[16px] z-10 transition-all duration-300"
-		{...wrapperProps}
-	>
+			<!-- Logo - positioned absolutely within header -->
+			<LogoWrapper
+				class="absolute top-[16px] left-[16px] z-10 transition-all duration-300"
+				{...wrapperProps}
+			>
 				<img
 					src="/images/logo-dd.svg"
 					alt="Durango Dog Training"
@@ -57,10 +41,10 @@ const wrapperProps = isHomePage ? {} : { href: '/' };
 			</LogoWrapper>
 
 			<div class="col-span-5 lg:col-span-6 bg-olive"></div>
-			<nav class="col-span-4 lg:col-span-3 flex items-center justify-evenly bg-charcoal font-opensans font-bold text-[16px] lg:text-[18px] tracking-[0.07em] uppercase antialiased">
+			<nav class="col-span-4 lg:col-span-3 flex items-center justify-evenly bg-[linear-gradient(to_bottom,var(--color-charcoal)_calc(50%),black_100%)] font-opensans font-semibold text-[16px] lg:text-[18px] tracking-[0.07em] uppercase antialiased">
 				{navItems.map((item) =>
 					isCurrentPage(item.href) ? (
-						<span class="text-olive py-2 px-[13px]">{item.label}</span>
+						<span class="text-yellow py-2 px-[13px]">{item.label}</span>
 					) : (
 						<a href={item.href} class="text-white no-underline transition-colors duration-500 ease-out hover:text-yellow py-2 px-[13px]">{item.label}</a>
 					)
@@ -75,5 +59,5 @@ const wrapperProps = isHomePage ? {} : { href: '/' };
 		<footer class="p-4 text-center">
 			<p>&copy; 2025 Durango Dog Training. All rights reserved.</p>
 		</footer>
-	</body>
-</html>
+	</div>
+</RootLayout>

@@ -1,48 +1,46 @@
 ---
+import { baseStyles, variantStyles, sizeStyles } from './button-styles';
+import type { ButtonVariant, ButtonSize } from './button-styles';
+
 interface Props {
-  href: string;
-  variant?: 'primary' | 'secondary' | 'highlight';
-  size?: 'small' | 'large';
+  /** Visual style */
+  variant?: ButtonVariant;
+
+  /** Size preset */
+  size?: ButtonSize;
+
+  /** Stretch to container width */
   fullWidth?: boolean;
-  class?: string;
+
+  /** Button type */
+  type?: 'button' | 'submit' | 'reset';
+
+  /** Disabled state */
+  disabled?: boolean;
 }
 
 const {
-  href,
   variant = 'primary',
-  size = 'small',
+  size = 'large',
   fullWidth = false,
-  class: className = ''
+  type = 'button',
+  disabled = false,
 } = Astro.props;
 
-// Base styles for all buttons
-const baseStyles = 'btn inline-block font-opensans font-bold text-center rounded-[6px] transition-colors';
-
-// Variant styles (btn-* classes override default anchor colors in global.css)
-const variantStyles = {
-  primary: 'btn-primary bg-charcoal border border-white/40 hover:bg-charcoal/40',
-  secondary: 'btn-secondary bg-transparent border border-charcoal hover:bg-charcoal/10',
-  highlight: 'btn-highlight bg-yellow border border-white hover:bg-yellow/10'
-};
-
-// Size styles
-const sizeStyles = {
-  small: 'text-[16px] py-[6px] px-6',
-  large: 'text-[20px] py-[12px] px-8'
-};
-
-// Full width style
 const widthStyle = fullWidth ? 'w-full' : '';
+const disabledStyle = disabled ? 'opacity-50 cursor-not-allowed' : '';
 
 const combinedStyles = [
   baseStyles,
   variantStyles[variant],
   sizeStyles[size],
   widthStyle,
-  className
-].filter(Boolean).join(' ');
+  disabledStyle,
+]
+  .filter(Boolean)
+  .join(' ');
 ---
 
-<a href={href} class={combinedStyles}>
+<button type={type} class={combinedStyles} disabled={disabled}>
   <slot />
-</a>
+</button>

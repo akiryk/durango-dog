@@ -1,10 +1,16 @@
 <!-- src/layouts/SystemLayout.astro -->
 ---
 import RootLayout from './RootLayout.astro';
+
+interface Props {
+	title?: string;
+}
+
+const { title = 'System' } = Astro.props;
 ---
 
-<RootLayout>
-  <main class="p-8">
-    <slot />
-  </main>
+<RootLayout title={`${title} | Style Guide`}>
+	<main class="p-8">
+		<slot />
+	</main>
 </RootLayout>

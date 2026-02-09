@@ -1,8 +1,9 @@
 ---
 import SystemLayout from '../../../layouts/SystemLayout.astro';
+import Button from '../../../components/Button.astro';
 import LinkButton from '../../../components/LinkButton.astro';
 ---
-<SystemLayout>
+<SystemLayout title="Components">
 <header class="space-y-3 max-w-prose">
   <h1 class="text-3xl font-bold">Components</h1>
   <p class="text-stone-600">
@@ -13,10 +14,39 @@ import LinkButton from '../../../components/LinkButton.astro';
 </header>
 
 <section class="mt-12 space-y-8">
-  <h2 class="text-xl font-semibold">Navigation</h2>
+  <h2 class="text-xl font-opensans font-semibold">Actions</h2>
 
   <div class="space-y-4">
-    <!-- Component name + description -->
+    <div class="space-y-1">
+      <h3 class="text-lg font-semibold">Button</h3>
+      <p class="text-sm text-stone-600 max-w-prose">
+        A styled <code class="bg-pale-tan px-1 rounded">&lt;button&gt;</code> element. Use for actions like form submission, opening modals, or triggering behavior.
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <div class="flex gap-4 flex-wrap items-center">
+        <Button>Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="highlight">Highlight</Button>
+      </div>
+
+      <div class="flex gap-4 flex-wrap items-center">
+        <Button size="small">Small</Button>
+        <Button size="large">Large</Button>
+      </div>
+
+      <div class="flex gap-4 flex-wrap items-center">
+        <Button disabled>Disabled</Button>
+      </div>
+
+      <div class="max-w-xs">
+        <Button fullWidth>Full width</Button>
+      </div>
+    </div>
+  </div>
+
+  <div class="space-y-4">
     <div class="space-y-1">
       <a
         href="/system/components/link-button"
@@ -25,11 +55,10 @@ import LinkButton from '../../../components/LinkButton.astro';
         LinkButton
       </a>
       <p class="text-sm text-stone-600 max-w-prose">
-        A navigation link styled as a button. Use for page-to-page navigation.
+        A styled <code class="bg-pale-tan px-1 rounded">&lt;a&gt;</code> element. Use for navigation links that should look like buttons.
       </p>
     </div>
 
-    <!-- Live preview -->
     <div class="space-y-4">
       <div class="flex gap-4 flex-wrap items-center">
         <LinkButton href="#">Primary</LinkButton>

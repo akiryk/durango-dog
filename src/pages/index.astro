@@ -60,9 +60,9 @@ const heroSection = story.content.body?.find((blok: any) => blok.component === '
 
       <div class="col-start-1 col-end-7 grid grid-cols-6 gap-x-10">
         <div class="col-start-1 col-end-6 py-12">
-          <h1 class="text-white leading-[1.1] mb-6">
-            Real Training. Real Freedom.<br />
-            <span class="text-yellow">Real Results.</span>
+            <h1 class="text-white leading-[1.1] mb-6">
+            {heroSection?.headline_part1}<br />
+            <span class="text-yellow">{heroSection?.headline_part2}</span>
           </h1>
 
 					<!-- Storyblok hero body_copy section -->
@@ -73,11 +73,11 @@ const heroSection = story.content.body?.find((blok: any) => blok.component === '
       <!-- Gray panel (asymmetric trailing) -->
       <div class="col-start-7 col-end-10 bg-charcoal flex items-center">
         <div class="w-full flex flex-col items-center gap-4 py-12 pl-10">
-          <LinkButton href="/services" variant="primary" size="large" class="w-full whitespace-nowrap">
+          <LinkButton href="/services" variant="secondary" size="large" fullWidth>
             Explore Training Programs
           </LinkButton>
 
-          <LinkButton href="/contact" variant="highlight" size="large" class="w-full whitespace-nowrap">
+          <LinkButton href="/contact" variant="highlight" size="large" fullWidth>
             Schedule A Consultation
           </LinkButton>
         </div>
@@ -103,7 +103,6 @@ const heroSection = story.content.body?.find((blok: any) => blok.component === '
     </div>
   </div>
 </div>
-
 	<!-- Why This Training Works Section -->
 	<section id="why-it-works" class="bg-pale-tan">
 		<div class="grid grid-cols-9 gap-[40px] mx-[40px] py-16">
@@ -124,71 +123,88 @@ const heroSection = story.content.body?.find((blok: any) => blok.component === '
 				<p class="text-black mb-4">This isn't about control.</p>
 				<p class="text-black mb-8">It's about building a partnership that lasts.</p>
 				<div class="flex gap-4">
-					<LinkButton href="/contact" variant="highlight" size="small">Schedule A Consultation</LinkButton>
-					<LinkButton href="/services" variant="secondary" size="small">Explore Training Programs</LinkButton>
+					<LinkButton href="/contact" variant="primary" >Schedule A Consultation</LinkButton>
+					<LinkButton href="/services" variant="highlight" >Explore Training Programs</LinkButton>
 				</div>
 			</div>
 		</div>
 	</section>
 
+
+  <!-- Decorative grid for the Who is it for section -->
 	<section class="relative decorative-grid">
 
-	<!-- Background layer -->
-  <div class="absolute inset-0 px-10 pointer-events-none">
-    <div class="grid grid-cols-9 gap-x-10 h-full">
-      <div class="col-span-8 bg-[var(--color-tan)]"></div>
-    </div>
-  </div>
-
-  <!-- content layer -->
-  <div class="relative z-10 px-10">
-    <!-- Structural grid -->
-    <div class="grid grid-cols-9 gap-x-10 py-16">
-
-      <!-- Text content -->
-      <div class="col-start-1 col-end-7">
-        <h2 class="mb-6">
-          Who this training is (and isn't) for
-        </h2>
-
-        <p class="font-bold mb-4">
-          This training is a great fit if you:
-        </p>
-
-        <ul class="list-disc pl-6 mb-8 space-y-2">
-          <li>Want a dog you can trust on- and off-leash</li>
-          <li>Are looking for long-term behavior change, not quick fixes</li>
-          <li>Value clear guidance and honest expectations</li>
-          <li>Are ready to be involved in your dog's success</li>
-        </ul>
-
-        <p class="font-bold mb-4">
-          This training may not be a fit if you:
-        </p>
-
-        <ul class="list-disc pl-6 mb-8 space-y-2">
-          <li>Want instant results with minimal effort</li>
-          <li>Prefer one-size-fits-all methods</li>
-          <li>Aren't open to structure, consistency, and follow-through</li>
-        </ul>
-
-        <p>
-          If you're not sure where your dog fits, that's completely normal —
-          most clients start with a consultation to figure out the best path forward.
-        </p>
+    <!-- Background layer -->
+    <div class="absolute inset-0 px-10 pointer-events-none">
+      <div class="grid grid-cols-9 gap-x-10 h-full">
+        <div class="col-span-8 bg-[var(--color-tan)]"></div>
       </div>
-
-      <!-- Image (grid-aligned, visually independent of background) -->
-      <div class="col-start-7 col-end-10 relative">
-        <PolaroidImage
-          src="/src/assets/originals/smiling-dog.jpg"
-          alt="Smiling dog in a field of flowers"
-					rotation="right"
-        />
-      </div>
-
     </div>
-  </div>
-</section>
+
+    <!-- content layer -->
+    <div class="relative z-10 px-10">
+      <!-- Structural grid -->
+      <div class="grid grid-cols-9 gap-x-10 py-16">
+
+        <!-- Text content -->
+        <div class="col-start-1 col-end-7">
+          <h2 class="mb-6">
+            Who this training is (and isn't) for
+          </h2>
+
+          <p class="font-bold mb-4">
+            This training is a great fit if you:
+          </p>
+
+          <ul class="list-disc pl-6 mb-8 space-y-2">
+            <li>Want a dog you can trust on- and off-leash</li>
+            <li>Are looking for long-term behavior change, not quick fixes</li>
+            <li>Value clear guidance and honest expectations</li>
+            <li>Are ready to be involved in your dog's success</li>
+          </ul>
+
+          <p class="font-bold mb-4">
+            This training may not be a fit if you:
+          </p>
+
+          <ul class="list-disc pl-6 mb-8 space-y-2">
+            <li>Want instant results with minimal effort</li>
+            <li>Prefer one-size-fits-all methods</li>
+            <li>Aren't open to structure, consistency, and follow-through</li>
+          </ul>
+
+          <p>
+            If you're not sure where your dog fits, that's completely normal —
+            most clients start with a consultation to figure out the best path forward.
+          </p>
+        </div>
+
+
+
+        <!-- Image (grid-aligned, visually independent of background) -->
+        <div class="col-start-7 col-end-10 relative">
+          <PolaroidImage
+            src="/src/assets/originals/smiling-dog.jpg"
+            alt="Smiling dog in a field of flowers"
+            rotation="right"
+          />
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+	<!-- New section with dark-green background from column 4 onward -->
+	<section class="tan-green-split-bg">
+		<div class="px-10">
+			<div class="grid grid-cols-9 gap-x-10 py-16">
+				<!-- Placeholder content -->
+				<div class="col-span-9">
+					<p class="text-white">Section content goes here.</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
 </SiteLayout>
