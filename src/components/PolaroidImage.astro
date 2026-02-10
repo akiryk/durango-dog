@@ -1,14 +1,16 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface Props {
-  src: string;
+  src: ImageMetadata;
   alt: string;
   rotation?: 'left' | 'right' | 'none';
-  customRotation?: string; // For custom values like 'rotate-3' or '-rotate-1'
+  customRotation?: string;
 }
 
 const { src, alt, rotation = 'right', customRotation } = Astro.props;
 
-// Map rotation directions to Tailwind classes
 const rotationClass = customRotation || {
   left: '-rotate-2',
   right: 'rotate-2',
@@ -17,7 +19,7 @@ const rotationClass = customRotation || {
 ---
 
 <div class={`inline-block bg-white p-3 ${rotationClass} shadow-lg`}>
-  <img
+  <Image
     src={src}
     alt={alt}
     class="block w-full h-auto"

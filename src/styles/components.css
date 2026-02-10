@@ -76,24 +76,33 @@ body[data-page="home"] .logo {
   font-family: var(--font-mynerve);
   font-weight: bold;
   font-size: 90px;
-  color: white;
   text-shadow:
     0 2px 8px rgba(0, 0, 0, 0.6),
     0 4px 16px rgba(0, 0, 0, 0.4);
   opacity: 0;
-  animation: heroTextFade 2600ms ease-in-out forwards;
+  animation: heroTextFade 2250ms ease-in-out forwards;
 }
 
 .hero-text-animate-1 {
-  animation-delay: 1000ms;
+  animation-delay: 500ms;
 }
 
 .hero-text-animate-2 {
-  animation-delay: 3800ms; /* 1000 + 2100 = crossfade with phrase 1 */
+  animation-delay: 3000ms; /* 1000 + 2100 = crossfade with phrase 1 */
 }
 
 .hero-text-animate-3 {
-  animation-delay: 6600ms; /* 3100 + 2100 = crossfade with phrase 2 */
+  animation-name: heroTextFadeIn;
+  animation-delay: 5500ms;
+}
+
+@keyframes heroTextFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes heroTextFade {

@@ -42,6 +42,24 @@
   );
 }
 
+/* Paw print background watermark */
+.paw-watermark {
+  position: relative;
+  overflow: hidden;
+}
+
+.paw-watermark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/paws.png");
+  background-repeat: no-repeat;
+  background-position: center 55%;
+  background-size: 45%;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
 @utility numbered-list {
   list-style: none;
   padding-left: 0;
@@ -50,9 +68,10 @@
   & > li {
     position: relative;
     padding-left: 4rem;
-    min-height: 4rem; /* Ensure minimum height matches circle */
+    min-height: 50px; /* Ensure minimum height matches circle */
     display: flex;
     align-items: center; /* Vertically center the text content */
+    margin-bottom: 0.75rem;
   }
 
   & > li:not(:last-child) {

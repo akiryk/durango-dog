@@ -1,138 +1,178 @@
 ---
-import SiteLayout from '../layouts/SiteLayout.astro';
-import { Image } from 'astro:assets';
-import dogTrainingImg from '../assets/originals/dog-training.jpg';
-import { useStoryblokApi, renderRichText } from '@storyblok/astro';
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { Image } from "astro:assets";
+import dogTrainingImg from "../assets/originals/dog-training.jpg";
+import smilingDogImg from "../assets/originals/smiling-dog.jpg";
+import { useStoryblokApi, renderRichText } from "@storyblok/astro";
 
 // Components
-import LinkButton from '../components/LinkButton.astro';
-import PolaroidImage from '../components/PolaroidImage.astro';
+import LinkButton from "../components/LinkButton.astro";
+import PolaroidImage from "../components/PolaroidImage.astro";
 
 const storyblokApi = useStoryblokApi();
-const { data } = await storyblokApi.get('cdn/stories/home', { version: 'published' });
+const { data } = await storyblokApi.get("cdn/stories/home", {
+  version: "published",
+});
 const story = data.story;
 
-const heroSection = story.content.body?.find((blok: any) => blok.component === 'hero_section');
+const heroSection = story.content.body?.find(
+  (blok: any) => blok.component === "hero_section",
+);
 ---
 
 <SiteLayout title="Home" isHomePage={true}>
-	<!-- Hero Video Section-->
-	<section class="relative h-[calc(100vh-48px)] lg:h-[calc(100vh-65px)] bg-black overflow-hidden">
-		<video
-			class="absolute inset-0 w-full h-full object-cover motion-safe:block motion-reduce:hidden"
-			autoplay
-			loop
-			muted
-			playsinline
-			preload="metadata"
-			fetchpriority="low"
-			poster="/images/dogs-video-poster.jpg"
-			aria-hidden="true"
-		>
-			<source
-				src="https://res.cloudinary.com/dartfxfpg/video/upload/q_auto,f_auto/dogs-video_hw55ej.mp4"
-				type="video/mp4"
-			/>
-		</video>
-		<img
-			src="/images/dogs-video-poster.jpg"
-			alt=""
-			class="absolute inset-0 w-full h-full object-cover hidden motion-reduce:block"
-			aria-hidden="true"
-		/>
+  <!-- Hero Video Section-->
+  <section
+    class="relative h-[calc(100vh-48px)] lg:h-[calc(100vh-65px)] bg-black overflow-hidden"
+  >
+    <video
+      class="absolute inset-0 w-full h-full object-cover motion-safe:block motion-reduce:hidden"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="metadata"
+      fetchpriority="low"
+      poster="/images/dogs-video-poster.jpg"
+      aria-hidden="true"
+    >
+      <source
+        src="https://res.cloudinary.com/dartfxfpg/video/upload/q_auto,f_auto/dogs-video_hw55ej.mp4"
+        type="video/mp4"
+      />
+    </video>
+    <img
+      src="/images/dogs-video-poster.jpg"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover hidden motion-reduce:block"
+      aria-hidden="true"
+    />
 
+    <!-- Animated text overlays -->
+    <div
+      class="absolute inset-0 flex items-center justify-center pointer-events-none"
+    >
+      <span class="hero-text-animate hero-text-animate-1 text-white"
+        >Real Training.</span
+      >
+      <span class="hero-text-animate hero-text-animate-2 text-white"
+        >Real Freedom.</span
+      >
+      <span class="hero-text-animate hero-text-animate-3 text-yellow"
+        >Durango Dog Training School.</span
+      >
+    </div>
+  </section>
 
-		<!-- Animated text overlays -->
-		<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-			<span class="hero-text-animate hero-text-animate-1">Real Training.</span>
-			<span class="hero-text-animate hero-text-animate-2">Real Freedom.</span>
-			<span class="hero-text-animate hero-text-animate-3">Real Results.</span>
-		</div>
-	</section>
-
-
-<!-- Hero StoryBlok Section -->
-<section id="primary-message" class="hero-bg">
-  <!-- Page margin container -->
-  <div class="px-10">
-    <!-- Grid -->
-    <div class="grid grid-cols-9 gap-x-10">
-
-      <div class="col-start-1 col-end-7 grid grid-cols-6 gap-x-10">
-        <div class="col-start-1 col-end-6 py-12">
+  <!-- Hero StoryBlok Section -->
+  <section id="primary-message" class="hero-bg">
+    <!-- Page margin container -->
+    <div class="px-10">
+      <!-- Grid -->
+      <div class="grid grid-cols-9 gap-x-10">
+        <div class="col-start-1 col-end-7 grid grid-cols-6 gap-x-10">
+          <div class="col-start-1 col-end-6 py-12">
             <h1 class="text-white leading-[1.1] mb-6">
-            {heroSection?.headline_part1}<br />
-            <span class="text-yellow">{heroSection?.headline_part2}</span>
-          </h1>
+              {heroSection?.headline_part1}<br />
+              <span class="text-yellow">{heroSection?.headline_part2}</span>
+            </h1>
 
-					<!-- Storyblok hero body_copy section -->
-          <div class="text-[1.25rem] text-white [&_p]:mb-4 [&_p:last-child]:mb-0" set:html={renderRichText(heroSection?.body_copy)} />
+            <!-- Storyblok hero body_copy section -->
+            <div
+              class="text-[1.25rem] text-white [&_p]:mb-4 [&_p:last-child]:mb-0"
+              set:html={renderRichText(heroSection?.body_copy)}
+            />
+          </div>
+        </div>
+
+        <!-- Gray panel (asymmetric trailing) -->
+        <div class="col-start-7 col-end-10 bg-charcoal flex items-center">
+          <div class="w-full flex flex-col items-center gap-4 py-12 pl-10">
+            <LinkButton
+              href="/services"
+              variant="secondary"
+              size="large"
+              fullWidth
+            >
+              Explore Training Programs
+            </LinkButton>
+
+            <LinkButton
+              href="/contact"
+              variant="highlight"
+              size="large"
+              fullWidth
+            >
+              Schedule A Consultation
+            </LinkButton>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Gray panel (asymmetric trailing) -->
-      <div class="col-start-7 col-end-10 bg-charcoal flex items-center">
-        <div class="w-full flex flex-col items-center gap-4 py-12 pl-10">
-          <LinkButton href="/services" variant="secondary" size="large" fullWidth>
-            Explore Training Programs
-          </LinkButton>
+  <!-- Decorative grid break -->
+  <div
+    aria-hidden="true"
+    role="presentation"
+    class="homepage-decorative-grid-bg"
+  >
+    <div class="px-10">
+      <div class="grid grid-cols-9 gap-x-10 h-[100px]">
+        <!-- Left decorative block -->
+        <div class="col-start-1 col-end-7 bg-dark-green"></div>
 
-          <LinkButton href="/contact" variant="highlight" size="large" fullWidth>
-            Schedule A Consultation
-          </LinkButton>
+        <!-- Right side intentionally empty / transparent -->
+        <div class="col-start-7 col-end-10"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Why This Training Works Section -->
+  <section id="why-it-works" class="bg-pale-tan">
+    <div class="grid grid-cols-9 gap-[40px] mx-[40px] py-16">
+      <!-- Image column -->
+      <div class="col-span-3">
+        <PolaroidImage
+          src={dogTrainingImg}
+          alt="Dogs during a training session"
+          rotation="left"
+        />
+      </div>
+      <!-- Content column -->
+      <div class="col-span-5">
+        <h2 class="text-dark-green leading-[1.1] mb-8">
+          Why this training works
+        </h2>
+        <p class="text-black mb-4">
+          Clear communication, fair structure, and motivation-driven learning.
+          That's the foundation of everything Emma teaches.
+        </p>
+        <p class="text-black mb-4">
+          Rather than relying on treats alone or heavy-handed correction, this
+          training approach focuses on helping dogs understand what's expected
+          of them — and want to make good choices. The result is behavior that
+          holds up in real life, not just during training sessions.
+        </p>
+        <p class="text-black mb-4">
+          Clients come for obedience, off-leash reliability, or behavior
+          challenges — and stay because they finally feel confident handling
+          their dog in the world.
+        </p>
+        <p class="text-black mb-4">This isn't about control.</p>
+        <p class="text-black mb-8">
+          It's about building a partnership that lasts.
+        </p>
+        <div class="flex gap-4">
+          <LinkButton href="/services" variant="primary"
+            >Explore Training Programs</LinkButton
+          >
         </div>
       </div>
-
     </div>
-  </div>
-</section>
-
-<!-- Decorative grid break -->
-<div
-  aria-hidden="true"
-  role="presentation"
-  class="homepage-decorative-grid-bg"
->
-  <div class="px-10">
-    <div class="grid grid-cols-9 gap-x-10 h-[100px]">
-      <!-- Left decorative block -->
-      <div class="col-start-1 col-end-7 bg-dark-green"></div>
-
-      <!-- Right side intentionally empty / transparent -->
-      <div class="col-start-7 col-end-10"></div>
-    </div>
-  </div>
-</div>
-	<!-- Why This Training Works Section -->
-	<section id="why-it-works" class="bg-pale-tan">
-		<div class="grid grid-cols-9 gap-[40px] mx-[40px] py-16">
-			<!-- Image column -->
-			<div class="col-span-3">
-				<PolaroidImage
-					src={dogTrainingImg.src}
-					alt="Dogs during a training session"
-					rotation="left"
-				/>
-			</div>
-			<!-- Content column -->
-			<div class="col-span-5">
-				<h2 class="text-dark-green leading-[1.1] mb-8">Why this training works</h2>
-				<p class="text-black mb-4">Clear communication, fair structure, and motivation-driven learning. That's the foundation of everything Emma teaches.</p>
-				<p class="text-black mb-4">Rather than relying on treats alone or heavy-handed correction, this training approach focuses on helping dogs understand what's expected of them — and want to make good choices. The result is behavior that holds up in real life, not just during training sessions.</p>
-				<p class="text-black mb-4">Clients come for obedience, off-leash reliability, or behavior challenges — and stay because they finally feel confident handling their dog in the world.</p>
-				<p class="text-black mb-4">This isn't about control.</p>
-				<p class="text-black mb-8">It's about building a partnership that lasts.</p>
-				<div class="flex gap-4">
-					<LinkButton href="/services" variant="primary" >Explore Training Programs</LinkButton>
-				</div>
-			</div>
-		</div>
-	</section>
-
+  </section>
 
   <!-- Who is it for section -->
-	<section class="relative decorative-grid">
-
+  <section class="relative decorative-grid paw-watermark">
     <!-- Background layer -->
     <div class="absolute inset-0 px-10 pointer-events-none">
       <div class="grid grid-cols-9 gap-x-10 h-full">
@@ -144,51 +184,47 @@ const heroSection = story.content.body?.find((blok: any) => blok.component === '
     <div class="relative z-10 px-10">
       <!-- Structural grid -->
       <div class="grid grid-cols-9 gap-x-10 py-8">
-
         <!-- Heading spans columns 1-6 -->
         <div class="col-start-1 col-end-10">
-          <h2 class="mb-6 text-dark-green">
-            Who this training is for
-          </h2>
+          <h2 class="mb-6 text-dark-green">Who this training is for</h2>
         </div>
 
         <!-- First bullet column (columns 1-3) -->
         <div class="col-start-1 col-end-4">
           <ol class="numbered-list">
             <li><span>Want a dog you can trust on- and off-leash</span></li>
-            <li><span>Are looking for long-term behavior change, not quick fixes</span></li>
+            <li>
+              <span
+                >Are looking for long-term behavior change, not quick fixes</span
+              >
+            </li>
             <li><span>Value clear guidance and honest expectations</span></li>
             <li><span>Are ready to be involved in your dog's success</span></li>
+            <li>Want instant results with minimal effort</li>
           </ol>
         </div>
 
-
         <!-- Second bullet column (columns 4-6) -->
         <div class="col-start-4 col-end-7 flex flex-col">
-          <ol class="numbered-list numbered-list-start-6">
-            <li>Want instant results with minimal effort</li>
-            <li>Prefer one-size-fits-all methods</li>
-          </ol>
-					<div class="mt-auto pl-10 pb-10">
-            <LinkButton href="/contact" variant="highlight">Schedule A Consultation</LinkButton>
+          <div class="mt-auto pl-10 pb-10">
+            <LinkButton href="/contact" variant="highlight"
+              >Schedule A Consultation</LinkButton
+            >
           </div>
         </div>
 
         <!-- Image (grid-aligned, visually independent of background) -->
         <div class="col-start-7 col-end-10 relative -top-8">
           <PolaroidImage
-            src="/src/assets/originals/smiling-dog.jpg"
+            src={smilingDogImg}
             alt="Smiling dog in a field of flowers"
             rotation="right"
           />
         </div>
-
       </div>
     </div>
-
   </section>
 
-	<!-- New section with dark-green background from column 4 onward -->
-	<section class="tan-green-split-bg"></section>
-
+  <!-- New section with dark-green background from column 4 onward -->
+  <section class="tan-green-split-bg"></section>
 </SiteLayout>
