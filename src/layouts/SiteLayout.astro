@@ -1,5 +1,7 @@
 ---
 import RootLayout from './RootLayout.astro';
+import { useStoryblokApi } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
 
 interface Props {
 	title: string;
@@ -7,6 +9,11 @@ interface Props {
 }
 
 const { title, isHomePage = false } = Astro.props;
+
+// Fetch footer content from Storyblok
+const storyblokApi = useStoryblokApi();
+const { data } = await storyblokApi.get('cdn/stories/home', { version: 'published' });
+const footerBlok = data.story.content.body?.find((blok: any) => blok.component === 'footer');
 
 const pathname = Astro.url.pathname;
 const isCurrentPage = (href: string) => {
@@ -56,8 +63,13 @@ const wrapperProps = isHomePage ? {} : { href: '/' };
 			<slot />
 		</main>
 
-		<footer class="p-4 text-center">
-			<p>&copy; 2025 Durango Dog Training. All rights reserved.</p>
-		</footer>
+		<div class={isHomePage ? 'relative -top-[100px]' : ''}>
+			{footerBlok && (
+				<StoryblokComponent blok={footerBlok} />
+			)}
+			<div class="bg-dark-green border-t border-white/20 py-4 text-center">
+				<p class="text-white/60 text-sm">&copy; {new Date().getFullYear()} Durango Dog Training | All rights reserved.</p>
+			</div>
+		</div>
 	</div>
 </RootLayout>

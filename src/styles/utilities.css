@@ -22,13 +22,13 @@
 .tan-green-split-bg {
   background: linear-gradient(
     to right,
-    var(--color-tan) 0%,
-    var(--color-tan) calc(33.333% + 27px),
-    var(--color-dark-green) calc(33.333% + 27px),
-    var(--color-dark-green) 100%
+    transparent 0%,
+    transparent calc(33.333% + 27px),
+    var(--color-charcoal) calc(33.333% + 27px),
+    var(--color-charcoal) 100%
   );
   position: relative;
-  top: -200px;
+  top: -170px;
   height: 200px;
 }
 
@@ -45,7 +45,7 @@
 @utility numbered-list {
   list-style: none;
   padding-left: 0;
-  counter-reset: step;
+  counter-reset: step 0;
 
   & > li {
     position: relative;
@@ -86,4 +86,12 @@
     line-height: 1.4;
     color: black;
   }
+}
+
+@utility numbered-list-start-5 {
+  counter-reset: step 4;
+}
+
+@utility numbered-list-start-6 {
+  counter-reset: step 5;
 }

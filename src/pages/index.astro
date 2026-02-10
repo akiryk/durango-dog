@@ -123,8 +123,7 @@ const heroSection = story.content.body?.find((blok: any) => blok.component === '
 				<p class="text-black mb-4">This isn't about control.</p>
 				<p class="text-black mb-8">It's about building a partnership that lasts.</p>
 				<div class="flex gap-4">
-					<LinkButton href="/contact" variant="primary" >Schedule A Consultation</LinkButton>
-					<LinkButton href="/services" variant="highlight" >Explore Training Programs</LinkButton>
+					<LinkButton href="/services" variant="primary" >Explore Training Programs</LinkButton>
 				</div>
 			</div>
 		</div>
@@ -165,19 +164,14 @@ const heroSection = story.content.body?.find((blok: any) => blok.component === '
 
 
         <!-- Second bullet column (columns 4-6) -->
-        <div class="col-start-4 col-end-7">
-          <p class="font-bold mb-4">
-            This training may not be a fit if you:
-          </p>
-
-          <ul class="list-disc pl-6 mb-8 space-y-2">
+        <div class="col-start-4 col-end-7 flex flex-col">
+          <ol class="numbered-list numbered-list-start-6">
             <li>Want instant results with minimal effort</li>
             <li>Prefer one-size-fits-all methods</li>
-          </ul>
-					<div class="relative top-10 left-10">
-            <LinkButton href="/contact" variant="secondary" >Schedule A Consultation</LinkButton>
+          </ol>
+					<div class="mt-auto pl-10 pb-10">
+            <LinkButton href="/contact" variant="highlight">Schedule A Consultation</LinkButton>
           </div>
-
         </div>
 
         <!-- Image (grid-aligned, visually independent of background) -->
