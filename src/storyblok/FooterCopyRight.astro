@@ -1,5 +1,5 @@
 ---
-import { storyblokEditable } from '@storyblok/astro';
+import { storyblokEditable } from "@storyblok/astro";
 
 interface Props {
   blok: {
@@ -10,6 +10,6 @@ interface Props {
 const { blok } = Astro.props;
 ---
 
-<div {...storyblokEditable(blok)} class="border-t border-white/20 py-4 mt-10 text-center">
+<div {...storyblokEditable(blok)} class="mt-[100px] text-center">
   <p class="text-white/60 text-sm">{blok.text}</p>
 </div>
