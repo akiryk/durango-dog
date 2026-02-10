@@ -1,5 +1,5 @@
 ---
-import { storyblokEditable } from '@storyblok/astro';
+import { storyblokEditable, renderRichText } from '@storyblok/astro';
 
 interface Props {
   blok: {
@@ -8,16 +8,17 @@ interface Props {
       filename: string;
       alt?: string;
     };
-    text: string;
+    text: any;
   };
 }
 
 const { blok } = Astro.props;
+const textHtml = blok.text ? renderRichText(blok.text) : '';
 ---
 
 <div {...storyblokEditable(blok)} class="text-white">
   {blok.headline && (
-    <h3 class="text-yellow font-bold mb-4">{blok.headline}</h3>
+    <h3 class="font-opensans font-normal text-[24px] text-white mb-4">{blok.headline}</h3>
   )}
 
   {blok.image?.filename && (
@@ -28,5 +29,7 @@ const { blok } = Astro.props;
     />
   )}
 
-  <p class="text-white/80">{blok.text}</p>
+  {textHtml && (
+    <div class="text-white/80 [&_p]:mb-2 [&_p:last-child]:mb-0" set:html={textHtml} />
+  )}
 </div>

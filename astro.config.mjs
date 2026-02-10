@@ -27,6 +27,7 @@ export default defineConfig({
         footer_site_map: 'storyblok/FooterSiteMap',
         footer_link: 'storyblok/FooterLink',
         footer_get_in_touch: 'storyblok/FooterGetInTouch',
+        footer_copy_right: 'storyblok/FooterCopyRight',
       },
     }),
   ],

@@ -5,9 +5,10 @@ import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
 interface Props {
   blok: {
     headline?: string;
-    value_proposition?: any[];
+    footer_value_prop?: any[];
     site_map?: any[];
     get_in_touch?: any[];
+    copy_right?: any[];
   };
 }
 
@@ -22,7 +23,7 @@ const { blok } = Astro.props;
 
     <div class="grid grid-cols-9 gap-[40px]">
       <div class="col-span-3">
-        {blok.value_proposition?.map((nestedBlok: any) => (
+        {blok.footer_value_prop?.map((nestedBlok: any) => (
           <StoryblokComponent blok={nestedBlok} />
         ))}
       </div>
@@ -39,5 +40,9 @@ const { blok } = Astro.props;
         ))}
       </div>
     </div>
+
+    {blok.copy_right?.map((nestedBlok: any) => (
+      <StoryblokComponent blok={nestedBlok} />
+    ))}
   </div>
 </footer>
